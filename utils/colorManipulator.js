@@ -163,7 +163,7 @@ function getLuminance(color) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 function emphasize(color) {
-  var coefficient = arguments.length <= 1 || arguments[1] === undefined ? 0.15 : arguments[1];
+  var coefficient = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.15;
 
   return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
 }

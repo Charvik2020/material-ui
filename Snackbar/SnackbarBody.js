@@ -5,7 +5,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.SnackbarBody = undefined;
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 var _simpleAssign = require('simple-assign');
 
@@ -29,15 +35,15 @@ var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
 function getStyles(props, context) {
   var open = props.open;
   var width = props.width;
   var _context$muiTheme = context.muiTheme;
-  var _context$muiTheme$bas = _context$muiTheme.baseTheme.spacing;
-  var desktopGutter = _context$muiTheme$bas.desktopGutter;
-  var desktopSubheaderHeight = _context$muiTheme$bas.desktopSubheaderHeight;
+  var _context$muiTheme$bas = _context$muiTheme.baseTheme;
+  var _context$muiTheme$bas2 = _context$muiTheme$bas.spacing;
+  var desktopGutter = _context$muiTheme$bas2.desktopGutter;
+  var desktopSubheaderHeight = _context$muiTheme$bas2.desktopSubheaderHeight;
+  var fontFamily = _context$muiTheme$bas.fontFamily;
   var _context$muiTheme$sna = _context$muiTheme.snackbar;
   var backgroundColor = _context$muiTheme$sna.backgroundColor;
   var textColor = _context$muiTheme$sna.textColor;
@@ -48,6 +54,7 @@ function getStyles(props, context) {
 
   var styles = {
     root: {
+      fontFamily: fontFamily,
       backgroundColor: backgroundColor,
       padding: '0 ' + desktopGutter + 'px',
       height: desktopSubheaderHeight,
@@ -55,8 +62,8 @@ function getStyles(props, context) {
       borderRadius: isSmall ? 0 : 2,
       maxWidth: isSmall ? 'inherit' : 568,
       minWidth: isSmall ? 'inherit' : 288,
-      flexGrow: isSmall ? 1 : 0,
-      margin: 'auto'
+      width: isSmall ? 'calc(100vw - ' + desktopGutter * 2 + 'px)' : 'auto',
+      flexGrow: isSmall ? 1 : 0
     },
     content: {
       fontSize: 14,
@@ -78,14 +85,13 @@ function getStyles(props, context) {
 }
 
 var SnackbarBody = exports.SnackbarBody = function SnackbarBody(props, context) {
-  var open = props.open;
   var action = props.action;
+  var contentStyle = props.contentStyle;
   var message = props.message;
+  var open = props.open;
   var onActionTouchTap = props.onActionTouchTap;
   var style = props.style;
-
-  var other = _objectWithoutProperties(props, ['open', 'action', 'message', 'onActionTouchTap', 'style']);
-
+  var other = (0, _objectWithoutProperties3.default)(props, ['action', 'contentStyle', 'message', 'open', 'onActionTouchTap', 'style']);
   var prepareStyles = context.muiTheme.prepareStyles;
 
   var styles = getStyles(props, context);
@@ -98,10 +104,10 @@ var SnackbarBody = exports.SnackbarBody = function SnackbarBody(props, context) 
 
   return _react2.default.createElement(
     'div',
-    _extends({}, other, { style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)) }),
+    (0, _extends3.default)({}, other, { style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)) }),
     _react2.default.createElement(
       'div',
-      { style: prepareStyles(styles.content) },
+      { style: prepareStyles((0, _simpleAssign2.default)(styles.content, contentStyle)) },
       _react2.default.createElement(
         'span',
         null,
@@ -112,11 +118,15 @@ var SnackbarBody = exports.SnackbarBody = function SnackbarBody(props, context) 
   );
 };
 
-SnackbarBody.propTypes = {
+process.env.NODE_ENV !== "production" ? SnackbarBody.propTypes = {
   /**
    * The label for the action on the snackbar.
    */
-  action: _react.PropTypes.string,
+  action: _react.PropTypes.node,
+  /**
+   * Override the inline-styles of the content element.
+   */
+  contentStyle: _react.PropTypes.object,
   /**
    * The message to be displayed.
    *
@@ -145,7 +155,7 @@ SnackbarBody.propTypes = {
    * Width of the screen.
    */
   width: _react.PropTypes.number.isRequired
-};
+} : void 0;
 
 SnackbarBody.contextTypes = {
   muiTheme: _react.PropTypes.object.isRequired
