@@ -4,9 +4,33 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends2 = require('babel-runtime/helpers/extends');
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _simpleAssign = require('simple-assign');
 
@@ -44,29 +68,21 @@ var _dateUtils = require('./dateUtils');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 var DatePickerDialog = function (_Component) {
-  _inherits(DatePickerDialog, _Component);
+  (0, _inherits3.default)(DatePickerDialog, _Component);
 
   function DatePickerDialog() {
-    var _Object$getPrototypeO;
+    var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, DatePickerDialog);
+    (0, _classCallCheck3.default)(this, DatePickerDialog);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(DatePickerDialog)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = DatePickerDialog.__proto__ || (0, _getPrototypeOf2.default)(DatePickerDialog)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       open: false
     }, _this.show = function () {
       if (_this.props.onShow && !_this.state.open) {
@@ -106,10 +122,10 @@ var DatePickerDialog = function (_Component) {
           _this.handleTouchTapOk();
           break;
       }
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
-  _createClass(DatePickerDialog, [{
+  (0, _createClass3.default)(DatePickerDialog, [{
     key: 'render',
     value: function render() {
       var _props = this.props;
@@ -131,10 +147,8 @@ var DatePickerDialog = function (_Component) {
       var onShow = _props.onShow;
       var shouldDisableDate = _props.shouldDisableDate;
       var style = _props.style;
-      var wordings = _props.wordings;
-
-      var other = _objectWithoutProperties(_props, ['DateTimeFormat', 'autoOk', 'cancelLabel', 'container', 'containerStyle', 'disableYearSelection', 'initialDate', 'firstDayOfWeek', 'locale', 'maxDate', 'minDate', 'mode', 'okLabel', 'onAccept', 'onDismiss', 'onShow', 'shouldDisableDate', 'style', 'wordings']);
-
+      var animation = _props.animation;
+      var other = (0, _objectWithoutProperties3.default)(_props, ['DateTimeFormat', 'autoOk', 'cancelLabel', 'container', 'containerStyle', 'disableYearSelection', 'initialDate', 'firstDayOfWeek', 'locale', 'maxDate', 'minDate', 'mode', 'okLabel', 'onAccept', 'onDismiss', 'onShow', 'shouldDisableDate', 'style', 'animation']);
       var open = this.state.open;
 
 
@@ -153,12 +167,12 @@ var DatePickerDialog = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        _extends({}, other, { ref: 'root' }),
+        (0, _extends3.default)({}, other, { ref: 'root' }),
         _react2.default.createElement(
           Container,
           {
             anchorEl: this.refs.root // For Popover
-            , animation: _PopoverAnimationVertical2.default // For Popover
+            , animation: animation || _PopoverAnimationVertical2.default // For Popover
             , bodyStyle: styles.dialogBodyContent,
             contentStyle: styles.dialogContent,
             ref: 'dialog',
@@ -188,19 +202,28 @@ var DatePickerDialog = function (_Component) {
             onTouchTapCancel: this.handleTouchTapCancel,
             onTouchTapOk: this.handleTouchTapOk,
             okLabel: okLabel,
-            shouldDisableDate: shouldDisableDate,
-            wordings: wordings
+            shouldDisableDate: shouldDisableDate
           })
         )
       );
     }
   }]);
-
   return DatePickerDialog;
 }(_react.Component);
 
-DatePickerDialog.propTypes = {
+DatePickerDialog.defaultProps = {
+  DateTimeFormat: _dateUtils.dateTimeFormat,
+  cancelLabel: 'Cancel',
+  container: 'dialog',
+  locale: 'en-US',
+  okLabel: 'OK'
+};
+DatePickerDialog.contextTypes = {
+  muiTheme: _react.PropTypes.object.isRequired
+};
+process.env.NODE_ENV !== "production" ? DatePickerDialog.propTypes = {
   DateTimeFormat: _react.PropTypes.func,
+  animation: _react.PropTypes.func,
   autoOk: _react.PropTypes.bool,
   cancelLabel: _react.PropTypes.node,
   container: _react.PropTypes.oneOf(['dialog', 'inline']),
@@ -218,17 +241,6 @@ DatePickerDialog.propTypes = {
   onShow: _react.PropTypes.func,
   open: _react.PropTypes.bool,
   shouldDisableDate: _react.PropTypes.func,
-  style: _react.PropTypes.object,
-  wordings: _react.PropTypes.object
-};
-DatePickerDialog.defaultProps = {
-  DateTimeFormat: _dateUtils.dateTimeFormat,
-  cancelLabel: 'Cancel',
-  container: 'dialog',
-  locale: 'en-US',
-  okLabel: 'OK'
-};
-DatePickerDialog.contextTypes = {
-  muiTheme: _react.PropTypes.object.isRequired
-};
+  style: _react.PropTypes.object
+} : void 0;
 exports.default = DatePickerDialog;

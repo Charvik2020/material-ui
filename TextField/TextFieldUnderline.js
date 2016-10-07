@@ -125,7 +125,7 @@ var TextFieldUnderline = function TextFieldUnderline(props) {
   );
 };
 
-TextFieldUnderline.propTypes = propTypes;
+process.env.NODE_ENV !== "production" ? TextFieldUnderline.propTypes = propTypes : void 0;
 TextFieldUnderline.defaultProps = defaultProps;
 
 exports.default = TextFieldUnderline;

@@ -4,9 +4,33 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends2 = require('babel-runtime/helpers/extends');
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _simpleAssign = require('simple-assign');
 
@@ -20,10 +44,6 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _keycode = require('keycode');
-
-var _keycode2 = _interopRequireDefault(_keycode);
-
 var _shallowEqual = require('recompose/shallowEqual');
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
@@ -33,10 +53,6 @@ var _colorManipulator = require('../utils/colorManipulator');
 var _transitions = require('../styles/transitions');
 
 var _transitions2 = _interopRequireDefault(_transitions);
-
-var _deprecatedPropType = require('../utils/deprecatedPropType');
-
-var _deprecatedPropType2 = _interopRequireDefault(_deprecatedPropType);
 
 var _EnhancedTextarea = require('./EnhancedTextarea');
 
@@ -59,14 +75,6 @@ var _warning = require('warning');
 var _warning2 = _interopRequireDefault(_warning);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var getStyles = function getStyles(props, context, state) {
   var _context$muiTheme = context.muiTheme;
@@ -106,7 +114,6 @@ var getStyles = function getStyles(props, context, state) {
       pointerEvents: 'none'
     },
     input: {
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style)
       padding: 0,
       position: 'relative',
       width: '100%',
@@ -115,8 +122,9 @@ var getStyles = function getStyles(props, context, state) {
       backgroundColor: 'rgba(0,0,0,0)',
       color: props.disabled ? disabledTextColor : textColor,
       cursor: props.disabled ? 'not-allowed' : 'initial',
-      font: 'inherit'
-    },
+      font: 'inherit',
+      appearance: 'textfield', // Improve type search style.
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)' },
     textarea: {}
   };
 
@@ -168,24 +176,24 @@ var getStyles = function getStyles(props, context, state) {
  * @returns True if the string provided is valid, false otherwise.
  */
 function isValid(value) {
-  return Boolean(value || value === 0);
+  return value !== '' && value !== undefined && value !== null;
 }
 
 var TextField = function (_Component) {
-  _inherits(TextField, _Component);
+  (0, _inherits3.default)(TextField, _Component);
 
   function TextField() {
-    var _Object$getPrototypeO;
+    var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, TextField);
+    (0, _classCallCheck3.default)(this, TextField);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(TextField)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = TextField.__proto__ || (0, _getPrototypeOf2.default)(TextField)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       isFocused: false,
       errorText: undefined,
       hasValue: false,
@@ -197,22 +205,23 @@ var TextField = function (_Component) {
       _this.setState({ hasValue: isValid(event.target.value), isClean: false });
       if (_this.props.onChange) _this.props.onChange(event, event.target.value);
     }, _this.handleInputFocus = function (event) {
-      if (_this.props.disabled) return;
+      if (_this.props.disabled) {
+        return;
+      }
       _this.setState({ isFocused: true });
-      if (_this.props.onFocus) _this.props.onFocus(event);
-    }, _this.handleInputKeyDown = function (event) {
-      if ((0, _keycode2.default)(event) === 'enter' && _this.props.onEnterKeyDown) _this.props.onEnterKeyDown(event);
-      if (_this.props.onKeyDown) _this.props.onKeyDown(event);
+      if (_this.props.onFocus) {
+        _this.props.onFocus(event);
+      }
     }, _this.handleHeightChange = function (event, height) {
       var newHeight = height + 24;
       if (_this.props.floatingLabelText) {
         newHeight += 24;
       }
       _reactDom2.default.findDOMNode(_this).style.height = newHeight + 'px';
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
-  _createClass(TextField, [{
+  (0, _createClass3.default)(TextField, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
       var _props = this.props;
@@ -326,9 +335,7 @@ var TextField = function (_Component) {
       var rows = _props2.rows;
       var rowsMax = _props2.rowsMax;
       var textareaStyle = _props2.textareaStyle;
-
-      var other = _objectWithoutProperties(_props2, ['children', 'className', 'disabled', 'errorStyle', 'errorText', 'floatingLabelFixed', 'floatingLabelFocusStyle', 'floatingLabelStyle', 'floatingLabelText', 'fullWidth', 'hintText', 'hintStyle', 'id', 'inputStyle', 'multiLine', 'onBlur', 'onChange', 'onFocus', 'style', 'type', 'underlineDisabledStyle', 'underlineFocusStyle', 'underlineShow', 'underlineStyle', 'rows', 'rowsMax', 'textareaStyle']);
-
+      var other = (0, _objectWithoutProperties3.default)(_props2, ['children', 'className', 'disabled', 'errorStyle', 'errorText', 'floatingLabelFixed', 'floatingLabelFocusStyle', 'floatingLabelStyle', 'floatingLabelText', 'fullWidth', 'hintText', 'hintStyle', 'id', 'inputStyle', 'multiLine', 'onBlur', 'onChange', 'onFocus', 'style', 'type', 'underlineDisabledStyle', 'underlineFocusStyle', 'underlineShow', 'underlineStyle', 'rows', 'rowsMax', 'textareaStyle']);
       var prepareStyles = this.context.muiTheme.prepareStyles;
 
       var styles = getStyles(this.props, this.context, this.state);
@@ -361,25 +368,24 @@ var TextField = function (_Component) {
         disabled: this.props.disabled,
         onBlur: this.handleInputBlur,
         onChange: this.handleInputChange,
-        onFocus: this.handleInputFocus,
-        onKeyDown: this.handleInputKeyDown
+        onFocus: this.handleInputFocus
       };
 
       var inputStyleMerged = (0, _simpleAssign2.default)(styles.input, inputStyle);
 
       var inputElement = void 0;
       if (children) {
-        inputElement = _react2.default.cloneElement(children, _extends({}, inputProps, children.props, {
+        inputElement = _react2.default.cloneElement(children, (0, _extends3.default)({}, inputProps, children.props, {
           style: (0, _simpleAssign2.default)(inputStyleMerged, children.props.style)
         }));
       } else {
-        inputElement = multiLine ? _react2.default.createElement(_EnhancedTextarea2.default, _extends({}, other, inputProps, {
+        inputElement = multiLine ? _react2.default.createElement(_EnhancedTextarea2.default, (0, _extends3.default)({}, other, inputProps, {
           style: inputStyleMerged,
           rows: rows,
           rowsMax: rowsMax,
           onHeightChange: this.handleHeightChange,
           textareaStyle: (0, _simpleAssign2.default)(styles.textarea, textareaStyle)
-        })) : _react2.default.createElement('input', _extends({}, other, inputProps, {
+        })) : _react2.default.createElement('input', (0, _extends3.default)({}, other, inputProps, {
           style: prepareStyles(inputStyleMerged),
           type: type
         }));
@@ -393,7 +399,7 @@ var TextField = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        _extends({}, rootProps, {
+        (0, _extends3.default)({}, rootProps, {
           className: className,
           style: prepareStyles((0, _simpleAssign2.default)(styles.root, style))
         }),
@@ -419,11 +425,22 @@ var TextField = function (_Component) {
       );
     }
   }]);
-
   return TextField;
 }(_react.Component);
 
-TextField.propTypes = {
+TextField.defaultProps = {
+  disabled: false,
+  floatingLabelFixed: false,
+  multiLine: false,
+  fullWidth: false,
+  type: 'text',
+  underlineShow: true,
+  rows: 1
+};
+TextField.contextTypes = {
+  muiTheme: _react.PropTypes.object.isRequired
+};
+process.env.NODE_ENV !== "production" ? TextField.propTypes = {
   children: _react.PropTypes.node,
   /**
    * The css class name of the root element.
@@ -498,14 +515,8 @@ TextField.propTypes = {
    * Callback function that is fired when the textfield's value changes.
    */
   onChange: _react.PropTypes.func,
-  /**
-   * The function to call when the user presses the Enter key.
-   */
-  onEnterKeyDown: (0, _deprecatedPropType2.default)(_react.PropTypes.func, 'Use onKeyDown and check for keycode instead. It will be removed with v0.16.0.'),
   /** @ignore */
   onFocus: _react.PropTypes.func,
-  /** @ignore */
-  onKeyDown: _react.PropTypes.func,
   /**
    * Number of rows to display when multiLine option is set to true.
    */
@@ -552,17 +563,5 @@ TextField.propTypes = {
    * The value of the text field.
    */
   value: _react.PropTypes.any
-};
-TextField.defaultProps = {
-  disabled: false,
-  floatingLabelFixed: false,
-  multiLine: false,
-  fullWidth: false,
-  type: 'text',
-  underlineShow: true,
-  rows: 1
-};
-TextField.contextTypes = {
-  muiTheme: _react.PropTypes.object.isRequired
-};
+} : void 0;
 exports.default = TextField;
