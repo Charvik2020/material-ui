@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.zIndex = exports.typography = exports.transitions = exports.themeManager = exports.spacing = exports.getMuiTheme = exports.LightRawTheme = exports.lightBaseTheme = exports.DarkRawTheme = exports.darkBaseTheme = exports.colors = exports.MuiThemeProvider = undefined;
+exports.zIndex = exports.typography = exports.transitions = exports.spacing = exports.getMuiTheme = exports.LightRawTheme = exports.lightBaseTheme = exports.DarkRawTheme = exports.darkBaseTheme = exports.colors = exports.MuiThemeProvider = undefined;
 
 var _MuiThemeProvider2 = require('./MuiThemeProvider');
 
@@ -29,10 +29,6 @@ var _spacing2 = require('./spacing');
 
 var _spacing3 = _interopRequireDefault(_spacing2);
 
-var _themeManager2 = require('./themeManager');
-
-var _themeManager3 = _interopRequireDefault(_themeManager2);
-
 var _transitions2 = require('./transitions');
 
 var _transitions3 = _interopRequireDefault(_transitions2);
@@ -57,7 +53,6 @@ exports.lightBaseTheme = _lightBaseTheme3.default;
 exports.LightRawTheme = _lightBaseTheme3.default;
 exports.getMuiTheme = _getMuiTheme3.default;
 exports.spacing = _spacing3.default;
-exports.themeManager = _themeManager3.default;
 exports.transitions = _transitions3.default;
 exports.typography = _typography3.default;
 exports.zIndex = _zIndex3.default;

@@ -3,11 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
 exports.default = getMuiTheme;
 
-var _merge = require('lodash/merge');
+var _lodash = require('lodash.merge');
 
-var _merge2 = _interopRequireDefault(_merge);
+var _lodash2 = _interopRequireDefault(_lodash);
 
 var _colorManipulator = require('../utils/colorManipulator');
 
@@ -43,8 +48,6 @@ var _colors = require('./colors');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 /**
  * Get the MUI theme corresponding to a base theme.
  * It's possible to override the computed theme values
@@ -56,7 +59,7 @@ function getMuiTheme(muiTheme) {
     more[_key - 1] = arguments[_key];
   }
 
-  muiTheme = _merge2.default.apply(undefined, [{
+  muiTheme = _lodash2.default.apply(undefined, [{
     zIndex: _zIndex2.default,
     isRtl: false,
     userAgent: undefined
@@ -69,7 +72,7 @@ function getMuiTheme(muiTheme) {
 
   var baseTheme = { spacing: spacing, fontFamily: fontFamily, palette: palette };
 
-  muiTheme = (0, _merge2.default)({
+  muiTheme = (0, _lodash2.default)({
     appBar: {
       color: palette.primary1Color,
       textColor: palette.alternateTextColor,
@@ -89,6 +92,14 @@ function getMuiTheme(muiTheme) {
       secondaryColor: palette.accent1Color,
       secondaryTextColor: palette.alternateTextColor,
       fontWeight: _typography2.default.fontWeightMedium
+    },
+    bottomNavigation: {
+      backgroundColor: palette.canvasColor,
+      unselectedColor: (0, _colorManipulator.fade)(palette.textColor, 0.54),
+      selectedColor: palette.primary1Color,
+      height: 56,
+      unselectedFontSize: 12,
+      selectedFontSize: 14
     },
     button: {
       height: 36,
@@ -131,7 +142,7 @@ function getMuiTheme(muiTheme) {
       calendarTextColor: palette.textColor,
       selectColor: palette.primary2Color,
       selectTextColor: palette.alternateTextColor,
-      calendarYearBackgroundColor: _colors.white
+      calendarYearBackgroundColor: palette.canvasColor
     },
     dialog: {
       titleFontSize: 22,
@@ -361,7 +372,7 @@ function getMuiTheme(muiTheme) {
   }).filter(function (t) {
     return t;
   });
-  muiTheme.prepareStyles = _compose2.default.apply(undefined, _toConsumableArray(transformers));
+  muiTheme.prepareStyles = _compose2.default.apply(undefined, (0, _toConsumableArray3.default)(transformers));
 
   return muiTheme;
 }

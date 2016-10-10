@@ -4,9 +4,37 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends2 = require('babel-runtime/helpers/extends');
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _keys = require('babel-runtime/core-js/object/keys');
+
+var _keys2 = _interopRequireDefault(_keys);
+
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
 
 exports.getStyles = getStyles;
 
@@ -38,15 +66,11 @@ var _warning = require('warning');
 
 var _warning2 = _interopRequireDefault(_warning);
 
+var _TextField = require('material-ui/TextField');
+
+var _TextField2 = _interopRequireDefault(_TextField);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function getStyles(props, context) {
   var _context$muiTheme = context.muiTheme;
@@ -103,35 +127,45 @@ function getStyles(props, context) {
 }
 
 var AppBar = function (_Component) {
-  _inherits(AppBar, _Component);
+  (0, _inherits3.default)(AppBar, _Component);
 
-  function AppBar() {
-    var _Object$getPrototypeO;
+  function AppBar(props) {
+    (0, _classCallCheck3.default)(this, AppBar);
 
-    var _temp, _this, _ret;
+    var _this = (0, _possibleConstructorReturn3.default)(this, (AppBar.__proto__ || (0, _getPrototypeOf2.default)(AppBar)).call(this, props));
 
-    _classCallCheck(this, AppBar);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(AppBar)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.handleTouchTapLeftIconButton = function (event) {
+    _this.handleTouchTapLeftIconButton = function (event) {
       if (_this.props.onLeftIconButtonTouchTap) {
         _this.props.onLeftIconButtonTouchTap(event);
       }
-    }, _this.handleTouchTapRightIconButton = function (event) {
+    };
+
+    _this.handleTouchTapRightIconButton = function (event) {
       if (_this.props.onRightIconButtonTouchTap) {
         _this.props.onRightIconButtonTouchTap(event);
       }
-    }, _this.handleTitleTouchTap = function (event) {
+    };
+
+    _this.handleTitleTouchTap = function (event) {
       if (_this.props.onTitleTouchTap) {
         _this.props.onTitleTouchTap(event);
       }
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    };
+
+    _this.toggleTextField = function () {
+      _this.setState({
+        showTextField: !_this.state.showTextField
+      }, function () {
+        this.props.getStatus(this.state.showTextField);
+      });
+    };
+
+    _this.state = { showTextField: false };
+
+    return _this;
   }
 
-  _createClass(AppBar, [{
+  (0, _createClass3.default)(AppBar, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       process.env.NODE_ENV !== "production" ? (0, _warning2.default)(!this.props.iconElementLeft || !this.props.iconClassNameLeft, 'Properties iconElementLeft\n      and iconClassNameLeft cannot be simultaneously defined. Please use one or the other.') : void 0;
@@ -153,19 +187,20 @@ var AppBar = function (_Component) {
       var iconClassNameLeft = _props.iconClassNameLeft;
       var iconClassNameRight = _props.iconClassNameRight;
       var onLeftIconButtonTouchTap = _props.onLeftIconButtonTouchTap;
+      var onRightIconButtonTouchTap = _props.onRightIconButtonTouchTap;
       var className = _props.className;
       var style = _props.style;
       var zDepth = _props.zDepth;
       var children = _props.children;
-
-      var other = _objectWithoutProperties(_props, ['title', 'titleStyle', 'iconStyleLeft', 'iconStyleRight', 'onTitleTouchTap', 'showMenuIconButton', 'iconElementLeft', 'iconElementRight', 'iconClassNameLeft', 'iconClassNameRight', 'onLeftIconButtonTouchTap', 'className', 'style', 'zDepth', 'children']);
-
+      var showSearchInput = _props.showSearchInput;
+      var other = (0, _objectWithoutProperties3.default)(_props, ['title', 'titleStyle', 'iconStyleLeft', 'iconStyleRight', 'onTitleTouchTap', 'showMenuIconButton', 'iconElementLeft', 'iconElementRight', 'iconClassNameLeft', 'iconClassNameRight', 'onLeftIconButtonTouchTap', 'onRightIconButtonTouchTap', 'className', 'style', 'zDepth', 'children', 'showSearchInput']);
       var prepareStyles = this.context.muiTheme.prepareStyles;
 
       var styles = getStyles(this.props, this.context);
 
       var menuElementLeft = void 0;
       var menuElementRight = void 0;
+      var searchInput = void 0;
 
       // If the title is a string, wrap in an h1 tag.
       // If not, wrap in a div tag.
@@ -179,25 +214,26 @@ var AppBar = function (_Component) {
       var iconLeftStyle = (0, _simpleAssign2.default)({}, styles.iconButtonStyle, iconStyleLeft);
 
       if (showMenuIconButton) {
-        var iconElementLeftNode = iconElementLeft;
-
         if (iconElementLeft) {
+          var iconElementLeftProps = {};
+
           if (iconElementLeft.type.muiName === 'IconButton') {
             var iconElemLeftChildren = iconElementLeft.props.children;
             var iconButtonIconStyle = !(iconElemLeftChildren && iconElemLeftChildren.props && iconElemLeftChildren.props.color) ? styles.iconButtonIconStyle : null;
 
-            iconElementLeftNode = _react2.default.cloneElement(iconElementLeft, {
-              iconStyle: (0, _simpleAssign2.default)({}, iconButtonIconStyle, iconElementLeft.props.iconStyle)
-            });
+            iconElementLeftProps.iconStyle = (0, _simpleAssign2.default)({}, iconButtonIconStyle, iconElementLeft.props.iconStyle);
+          }
+
+          if (!iconElementLeft.props.onTouchTap && this.props.onLeftIconButtonTouchTap) {
+            iconElementLeftProps.onTouchTap = this.handleTouchTapLeftIconButton;
           }
 
           menuElementLeft = _react2.default.createElement(
             'div',
             { style: prepareStyles(iconLeftStyle) },
-            iconElementLeftNode
+            (0, _keys2.default)(iconElementLeftProps).length > 0 ? (0, _react.cloneElement)(iconElementLeft, iconElementLeftProps) : iconElementLeft
           );
         } else {
-          var child = iconClassNameLeft ? '' : _react2.default.createElement(_menu2.default, { style: (0, _simpleAssign2.default)({}, styles.iconButtonIconStyle) });
           menuElementLeft = _react2.default.createElement(
             _IconButton2.default,
             {
@@ -206,7 +242,7 @@ var AppBar = function (_Component) {
               iconClassName: iconClassNameLeft,
               onTouchTap: this.handleTouchTapLeftIconButton
             },
-            child
+            iconClassNameLeft ? '' : _react2.default.createElement(_menu2.default, { style: (0, _simpleAssign2.default)({}, styles.iconButtonIconStyle) })
           );
         }
       }
@@ -217,7 +253,7 @@ var AppBar = function (_Component) {
       }, iconStyleRight);
 
       if (iconElementRight) {
-        var iconElementRightNode = iconElementRight;
+        var iconElementRightProps = {};
 
         switch (iconElementRight.type.muiName) {
           case 'IconMenu':
@@ -225,24 +261,24 @@ var AppBar = function (_Component) {
             var iconElemRightChildren = iconElementRight.props.children;
             var _iconButtonIconStyle = !(iconElemRightChildren && iconElemRightChildren.props && iconElemRightChildren.props.color) ? styles.iconButtonIconStyle : null;
 
-            iconElementRightNode = _react2.default.cloneElement(iconElementRight, {
-              iconStyle: (0, _simpleAssign2.default)({}, _iconButtonIconStyle, iconElementRight.props.iconStyle)
-            });
+            iconElementRightProps.iconStyle = (0, _simpleAssign2.default)({}, _iconButtonIconStyle, iconElementRight.props.iconStyle);
             break;
 
           case 'FlatButton':
-            iconElementRightNode = _react2.default.cloneElement(iconElementRight, {
-              style: (0, _simpleAssign2.default)({}, styles.flatButton, iconElementRight.props.style)
-            });
+            iconElementRightProps.style = (0, _simpleAssign2.default)({}, styles.flatButton, iconElementRight.props.style);
             break;
 
           default:
         }
 
+        if (!iconElementRight.props.onTouchTap && this.props.onRightIconButtonTouchTap) {
+          iconElementRightProps.onTouchTap = this.handleTouchTapRightIconButton;
+        }
+
         menuElementRight = _react2.default.createElement(
           'div',
           { style: prepareStyles(iconRightStyle) },
-          iconElementRightNode
+          (0, _keys2.default)(iconElementRightProps).length > 0 ? (0, _react.cloneElement)(iconElementRight, iconElementRightProps) : iconElementRight
         );
       } else if (iconClassNameRight) {
         menuElementRight = _react2.default.createElement(_IconButton2.default, {
@@ -252,10 +288,26 @@ var AppBar = function (_Component) {
           onTouchTap: this.handleTouchTapRightIconButton
         });
       }
-
+      if (showSearchInput) {
+        searchInput = _react2.default.createElement(
+          'div',
+          { style: { "width": "100%", "position": "relative" } },
+          this.state.showTextField ? _react2.default.createElement(_TextField2.default, { hintText: this.props.searchHintText, underlineStyle: this.props.searchUnderlineStyle,
+            hintStyle: this.props.hintStyle, style: this.props.textFieldStyle, inputStyle: this.props.inputStyle, onChange: this.props.handleChange }) : null,
+          !this.state.showTextField ? _react2.default.createElement(
+            'i',
+            { className: 'material-icons', onClick: this.toggleTextField, style: this.props.searchIconStyle },
+            'search'
+          ) : _react2.default.createElement(
+            'i',
+            { className: 'material-icons', onClick: this.toggleTextField, style: this.props.searchIconStyle },
+            'cancel'
+          )
+        );
+      }
       return _react2.default.createElement(
         _Paper2.default,
-        _extends({}, other, {
+        (0, _extends3.default)({}, other, {
           rounded: false,
           className: className,
           style: (0, _simpleAssign2.default)({}, styles.root, style),
@@ -263,17 +315,29 @@ var AppBar = function (_Component) {
         }),
         menuElementLeft,
         titleElement,
+        searchInput,
         menuElementRight,
         children
       );
     }
   }]);
-
   return AppBar;
 }(_react.Component);
 
 AppBar.muiName = 'AppBar';
-AppBar.propTypes = {
+AppBar.defaultProps = {
+  showMenuIconButton: true,
+  title: '',
+  zDepth: 1,
+  showSearchInput: false,
+  searchHintStyle: _propTypes2.default.searchHintStyle,
+  searchUnderlineStyle: _propTypes2.default.searchUnderlineStyle,
+  searchUnderlineFocusStyle: _propTypes2.default.searchUnderlineFocusStyle
+};
+AppBar.contextTypes = {
+  muiTheme: _react.PropTypes.object.isRequired
+};
+process.env.NODE_ENV !== "production" ? AppBar.propTypes = {
   /**
    * Can be used to render a tab inside an app bar for instance.
    */
@@ -349,13 +413,5 @@ AppBar.propTypes = {
    * The shadow of the app bar is also dependent on this property.
    */
   zDepth: _propTypes2.default.zDepth
-};
-AppBar.defaultProps = {
-  showMenuIconButton: true,
-  title: '',
-  zDepth: 1
-};
-AppBar.contextTypes = {
-  muiTheme: _react.PropTypes.object.isRequired
-};
+} : void 0;
 exports.default = AppBar;

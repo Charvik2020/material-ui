@@ -4,9 +4,33 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends2 = require('babel-runtime/helpers/extends');
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _react = require('react');
 
@@ -32,9 +56,9 @@ var _Paper = require('../Paper');
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
-var _throttle = require('lodash/throttle');
+var _lodash = require('lodash.throttle');
 
-var _throttle2 = _interopRequireDefault(_throttle);
+var _lodash2 = _interopRequireDefault(_lodash);
 
 var _PopoverAnimationDefault = require('./PopoverAnimationDefault');
 
@@ -42,21 +66,21 @@ var _PopoverAnimationDefault2 = _interopRequireDefault(_PopoverAnimationDefault)
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+var styles = {
+  root: {
+    display: 'none'
+  }
+};
 
 var Popover = function (_Component) {
-  _inherits(Popover, _Component);
+  (0, _inherits3.default)(Popover, _Component);
 
   function Popover(props, context) {
-    _classCallCheck(this, Popover);
+    (0, _classCallCheck3.default)(this, Popover);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Popover).call(this, props, context));
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Popover.__proto__ || (0, _getPrototypeOf2.default)(Popover)).call(this, props, context));
+
+    _this.timeout = null;
 
     _this.renderLayer = function () {
       var _this$props = _this.props;
@@ -64,8 +88,8 @@ var Popover = function (_Component) {
       var animation = _this$props.animation;
       var children = _this$props.children;
       var style = _this$props.style;
+      var other = (0, _objectWithoutProperties3.default)(_this$props, ['animated', 'animation', 'children', 'style']);
 
-      var other = _objectWithoutProperties(_this$props, ['animated', 'animation', 'children', 'style']);
 
       var Animation = animation || _PopoverAnimationDefault2.default;
       var styleRoot = style;
@@ -82,7 +106,7 @@ var Popover = function (_Component) {
 
       return _react2.default.createElement(
         Animation,
-        _extends({}, other, { style: styleRoot, open: _this.state.open && !_this.state.closing }),
+        (0, _extends3.default)({}, other, { style: styleRoot, open: _this.state.open && !_this.state.closing }),
         children
       );
     };
@@ -95,8 +119,6 @@ var Popover = function (_Component) {
       if (!_this.state.open) {
         return;
       }
-
-      var anchorEl = _this.props.anchorEl || _this.anchorEl;
 
       if (!_this.refs.layer.getLayer()) {
         return;
@@ -111,6 +133,7 @@ var Popover = function (_Component) {
       var targetOrigin = _this$props2.targetOrigin;
       var anchorOrigin = _this$props2.anchorOrigin;
 
+      var anchorEl = _this.props.anchorEl || _this.anchorEl;
 
       var anchor = _this.getAnchorPosition(anchorEl);
       var target = _this.getTargetPosition(targetEl);
@@ -134,8 +157,8 @@ var Popover = function (_Component) {
       targetEl.style.maxHeight = window.innerHeight + 'px';
     };
 
-    _this.handleResize = (0, _throttle2.default)(_this.setPlacement, 100);
-    _this.handleScroll = (0, _throttle2.default)(_this.setPlacement.bind(_this, true), 50);
+    _this.handleResize = (0, _lodash2.default)(_this.setPlacement, 100);
+    _this.handleScroll = (0, _lodash2.default)(_this.setPlacement.bind(_this, true), 50);
 
     _this.state = {
       open: props.open,
@@ -144,7 +167,7 @@ var Popover = function (_Component) {
     return _this;
   }
 
-  _createClass(Popover, [{
+  (0, _createClass3.default)(Popover, [{
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       var _this2 = this;
@@ -158,10 +181,13 @@ var Popover = function (_Component) {
           });
         } else {
           if (nextProps.animated) {
+            if (this.timeout !== null) return;
             this.setState({ closing: true });
             this.timeout = setTimeout(function () {
               _this2.setState({
                 open: false
+              }, function () {
+                _this2.timeout = null;
               });
             }, 500);
           } else {
@@ -180,7 +206,13 @@ var Popover = function (_Component) {
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      clearTimeout(this.timeout);
+      this.handleResize.cancel();
+      this.handleScroll.cancel();
+
+      if (this.timeout) {
+        clearTimeout(this.timeout);
+        this.timeout = null;
+      }
     }
   }, {
     key: 'requestClose',
@@ -188,11 +220,6 @@ var Popover = function (_Component) {
       if (this.props.onRequestClose) {
         this.props.onRequestClose(reason);
       }
-    }
-  }, {
-    key: '_resizeAutoPosition',
-    value: function _resizeAutoPosition() {
-      this.setPlacement();
     }
   }, {
     key: 'getAnchorPosition',
@@ -245,8 +272,8 @@ var Popover = function (_Component) {
   }, {
     key: 'getPositions',
     value: function getPositions(anchor, target) {
-      var a = _extends({}, anchor);
-      var t = _extends({}, target);
+      var a = (0, _extends3.default)({}, anchor);
+      var t = (0, _extends3.default)({}, target);
 
       var positions = {
         x: ['left', 'right'].filter(function (p) {
@@ -314,7 +341,7 @@ var Popover = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { style: { display: 'none' } },
+        { style: styles.root },
         _react2.default.createElement(_reactEventListener2.default, {
           target: 'window',
           onScroll: this.handleScroll,
@@ -330,11 +357,33 @@ var Popover = function (_Component) {
       );
     }
   }]);
-
   return Popover;
 }(_react.Component);
 
-Popover.propTypes = {
+Popover.defaultProps = {
+  anchorOrigin: {
+    vertical: 'bottom',
+    horizontal: 'left'
+  },
+  animated: true,
+  autoCloseWhenOffScreen: true,
+  canAutoPosition: true,
+  onRequestClose: function onRequestClose() {},
+  open: false,
+  style: {
+    overflowY: 'auto'
+  },
+  targetOrigin: {
+    vertical: 'top',
+    horizontal: 'left'
+  },
+  useLayerForClickAway: true,
+  zDepth: 1
+};
+Popover.contextTypes = {
+  muiTheme: _react.PropTypes.object.isRequired
+};
+process.env.NODE_ENV !== "production" ? Popover.propTypes = {
   /**
    * This is the DOM element that will be used to set the position of the
    * popover.
@@ -408,28 +457,5 @@ Popover.propTypes = {
    * The zDepth of the popover.
    */
   zDepth: _propTypes2.default.zDepth
-};
-Popover.defaultProps = {
-  anchorOrigin: {
-    vertical: 'bottom',
-    horizontal: 'left'
-  },
-  animated: true,
-  autoCloseWhenOffScreen: true,
-  canAutoPosition: true,
-  onRequestClose: function onRequestClose() {},
-  open: false,
-  style: {
-    overflowY: 'auto'
-  },
-  targetOrigin: {
-    vertical: 'top',
-    horizontal: 'left'
-  },
-  useLayerForClickAway: true,
-  zDepth: 1
-};
-Popover.contextTypes = {
-  muiTheme: _react.PropTypes.object.isRequired
-};
+} : void 0;
 exports.default = Popover;
