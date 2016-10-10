@@ -66,6 +66,7 @@ var _warning = require('warning');
 
 var _warning2 = _interopRequireDefault(_warning);
 
+
 var _TextField = require('material-ui/TextField');
 
 var _TextField2 = _interopRequireDefault(_TextField);
@@ -129,12 +130,27 @@ function getStyles(props, context) {
 var AppBar = function (_Component) {
   (0, _inherits3.default)(AppBar, _Component);
 
+<<<<<<< HEAD
   function AppBar(props) {
     (0, _classCallCheck3.default)(this, AppBar);
 
     var _this = (0, _possibleConstructorReturn3.default)(this, (AppBar.__proto__ || (0, _getPrototypeOf2.default)(AppBar)).call(this, props));
 
     _this.handleTouchTapLeftIconButton = function (event) {
+=======
+  function AppBar() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3.default)(this, AppBar);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = AppBar.__proto__ || (0, _getPrototypeOf2.default)(AppBar)).call.apply(_ref, [this].concat(args))), _this), _this.handleTouchTapLeftIconButton = function (event) {
+>>>>>>> 38fafb8abbe8e87bfd79869dded2c0f08d5335f9
       if (_this.props.onLeftIconButtonTouchTap) {
         _this.props.onLeftIconButtonTouchTap(event);
       }
@@ -150,6 +166,7 @@ var AppBar = function (_Component) {
       if (_this.props.onTitleTouchTap) {
         _this.props.onTitleTouchTap(event);
       }
+
     };
 
     _this.toggleTextField = function () {
@@ -163,6 +180,7 @@ var AppBar = function (_Component) {
     _this.state = { showTextField: false };
 
     return _this;
+
   }
 
   (0, _createClass3.default)(AppBar, [{
@@ -192,8 +210,10 @@ var AppBar = function (_Component) {
       var style = _props.style;
       var zDepth = _props.zDepth;
       var children = _props.children;
+
       var showSearchInput = _props.showSearchInput;
       var other = (0, _objectWithoutProperties3.default)(_props, ['title', 'titleStyle', 'iconStyleLeft', 'iconStyleRight', 'onTitleTouchTap', 'showMenuIconButton', 'iconElementLeft', 'iconElementRight', 'iconClassNameLeft', 'iconClassNameRight', 'onLeftIconButtonTouchTap', 'onRightIconButtonTouchTap', 'className', 'style', 'zDepth', 'children', 'showSearchInput']);
+
       var prepareStyles = this.context.muiTheme.prepareStyles;
 
       var styles = getStyles(this.props, this.context);
@@ -328,11 +348,13 @@ AppBar.muiName = 'AppBar';
 AppBar.defaultProps = {
   showMenuIconButton: true,
   title: '',
+
   zDepth: 1,
   showSearchInput: false,
   searchHintStyle: _propTypes2.default.searchHintStyle,
   searchUnderlineStyle: _propTypes2.default.searchUnderlineStyle,
   searchUnderlineFocusStyle: _propTypes2.default.searchUnderlineFocusStyle
+
 };
 AppBar.contextTypes = {
   muiTheme: _react.PropTypes.object.isRequired
