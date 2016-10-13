@@ -164,7 +164,9 @@ var AppBar = function (_Component) {
       _this.setState({
         clearText: true
       }, function () {
-        clearText: false;
+        this.setState({
+          clearText: false
+        });
       });
     };
 
