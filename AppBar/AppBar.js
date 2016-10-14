@@ -153,11 +153,7 @@ var AppBar = function (_Component) {
     };
 
     _this.toggleTextField = function () {
-      _this.setState({
-        showTextField: !_this.state.showTextField
-      }, function () {
-        this.props.getStatus(this.state.showTextField);
-      });
+      _this.props.getStatus(!_this.props.showTextField);
     };
 
     _this.onCancel = function () {
@@ -170,7 +166,7 @@ var AppBar = function (_Component) {
       });
     };
 
-    _this.state = { showTextField: false, clearText: false };
+    _this.state = { clearText: false };
 
     return _this;
   }
@@ -304,9 +300,9 @@ var AppBar = function (_Component) {
         searchInput = _react2.default.createElement(
           'div',
           { style: { "width": "100%", "position": "relative" } },
-          this.state.showTextField ? _react2.default.createElement(_AutoComplete2.default, { dataSource: this.props.dataSource, hintText: this.props.searchHintText, underlineStyle: this.props.searchUnderlineStyle,
+          this.props.showTextField ? _react2.default.createElement(_AutoComplete2.default, { dataSource: this.props.dataSource, hintText: this.props.searchHintText, underlineStyle: this.props.searchUnderlineStyle,
             hintStyle: this.props.hintStyle, clearInput: this.state.clearText, textFieldStyle: this.props.textFieldStyle, inputStyle: this.props.inputStyle, onNewRequest: this.props.onNewRequest }) : null,
-          !this.state.showTextField ? _react2.default.createElement(
+          !this.props.showTextField ? _react2.default.createElement(
             'i',
             { className: 'material-icons', onClick: this.toggleTextField, style: this.props.searchIconStyle },
             'search'
