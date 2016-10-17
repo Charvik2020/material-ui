@@ -317,7 +317,7 @@ var AppBar = function (_Component) {
 
         searchIcon = _react2.default.createElement(
           'div',
-          { style: { "width": "100%", "position": "relative" } },
+          { style: { "position": "relative" } },
           _react2.default.createElement(
             'i',
             { className: 'material-icons', onClick: this.toggleTextField, style: this.props.searchIconStyle },
