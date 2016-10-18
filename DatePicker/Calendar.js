@@ -68,6 +68,8 @@ var _SlideIn = require('../internal/SlideIn');
 
 var _SlideIn2 = _interopRequireDefault(_SlideIn);
 
+var _RadioButton = require('../RadioButton');
+
 var _dateUtils = require('./dateUtils');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -158,6 +160,12 @@ var Calendar = function (_Component) {
             break;
         }
       }
+    }, _this.selectCompareValue = function (event, value) {
+      _this.setState({
+        selectedCompareValue: value
+      }, function () {
+        this.props.selectCompareValue(value);
+      });
     }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
@@ -396,6 +404,27 @@ var Calendar = function (_Component) {
               })
             )
           ),
+          this.props.hasCompareDate ? _react2.default.createElement(
+            'div',
+            { style: { fontSize: '18px', fontFamily: 'Bariol-Light',
+                'marginLeft': '15px' } },
+            'Compare With',
+            _react2.default.createElement(
+              _RadioButton.RadioButtonGroup,
+              { name: "comparedToRadio",
+                valueSelected: this.state.selectedCompareValue,
+                defaultSelected: 'previous_day',
+                onChange: this.selectCompareValue },
+              _react2.default.createElement(_RadioButton.RadioButton, {
+                value: 'previous_day',
+                label: 'Previous day',
+                labelStyle: { fontFamily: 'Bariol-Light', fontSize: '18px' } }),
+              _react2.default.createElement(_RadioButton.RadioButton, {
+                value: 'same_day_last_month',
+                label: 'Same day past month',
+                labelStyle: { fontFamily: 'Bariol-Light', fontSize: '18px' } })
+            )
+          ) : null,
           !this.state.displayMonthDay && _react2.default.createElement(
             'div',
             { style: prepareStyles(styles.yearContainer) },

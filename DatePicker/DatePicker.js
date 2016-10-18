@@ -67,7 +67,8 @@ var DatePicker = function (_Component) {
     }
 
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = DatePicker.__proto__ || (0, _getPrototypeOf2.default)(DatePicker)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      date: undefined
+      date: undefined,
+      selectedCompareValue: 'previous_day'
     }, _this.handleAccept = function (date) {
       if (!_this.isControlled()) {
         _this.setState({
@@ -75,7 +76,7 @@ var DatePicker = function (_Component) {
         });
       }
       if (_this.props.onChange) {
-        _this.props.onChange(null, date);
+        _this.props.onChange(null, date, _this.state.selectedCompareValue);
       }
     }, _this.handleFocus = function (event) {
       event.target.blur();
@@ -92,6 +93,10 @@ var DatePicker = function (_Component) {
           _this.openDialog();
         }, 0);
       }
+    }, _this.selectCompareValue = function (value) {
+      _this.setState({
+        selectedCompareValue: value
+      });
     }, _this.formatDate = function (date) {
       if (_this.props.locale) {
         var DateTimeFormat = _this.props.DateTimeFormat || _dateUtils.dateTimeFormat;
@@ -236,7 +241,9 @@ var DatePicker = function (_Component) {
           onShow: onShow,
           onDismiss: onDismiss,
           ref: 'dialogWindow',
-          shouldDisableDate: shouldDisableDate
+          shouldDisableDate: shouldDisableDate,
+          selectCompareValue: this.selectCompareValue,
+          hasCompareDate: this.props.hasCompareDate
         })
       );
     }
@@ -386,3 +393,6 @@ process.env.NODE_ENV !== "production" ? DatePicker.propTypes = {
   value: _react.PropTypes.object
 } : void 0;
 exports.default = DatePicker;
+/*
+selectCompare={this.props.showCompare? this.props.selectCompareValue:null
+*/
