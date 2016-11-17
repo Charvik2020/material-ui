@@ -111,8 +111,7 @@ var TransitionItem = function (_Component) {
 
       this.setState({
         style: {
-          opacity: 1,
-          transform: 'translate(0, ' + spacing.desktopKeylineIncrement + 'px)'
+          opacity: 1
         }
       });
 
@@ -310,7 +309,9 @@ var DialogInline = function (_Component2) {
         if (_react2.default.Children.count(actions)) {
           maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
         }
-
+        if (maxDialogContentHeight < 520) {
+          maxDialogContentHeight = 520;
+        }
         dialogContent.style.maxHeight = maxDialogContentHeight + 'px';
       }
     }
