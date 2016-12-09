@@ -300,7 +300,7 @@ var AppBar = function (_Component) {
         searchInput = _react2.default.createElement(
           'div',
           { style: { "width": "100%", "position": "relative" } },
-          this.props.showTextField ? _react2.default.createElement(_AutoComplete2.default, { dataSource: this.props.dataSource, hintText: this.props.searchHintText, underlineStyle: this.props.searchUnderlineStyle,
+          this.props.showTextField ? _react2.default.createElement(_AutoComplete2.default, { dataSourceConfig: this.props.dataSourceConfig, filter: this.props.filter, dataSource: this.props.dataSource, hintText: this.props.searchHintText, underlineStyle: this.props.searchUnderlineStyle,
             hintStyle: this.props.hintStyle, clearInput: this.state.clearText, textFieldStyle: this.props.textFieldStyle, inputStyle: this.props.inputStyle, onNewRequest: this.props.onNewRequest }) : null,
           !this.props.showTextField ? _react2.default.createElement(
             'i',
