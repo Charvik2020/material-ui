@@ -421,7 +421,7 @@ var Calendar = function (_Component) {
                 labelStyle: { fontFamily: 'Bariol-Light', fontSize: '18px' } }),
               _react2.default.createElement(_RadioButton.RadioButton, {
                 value: 'same_day_last_month',
-                label: 'Same day past month',
+                label: 'Last day past month',
                 labelStyle: { fontFamily: 'Bariol-Light', fontSize: '18px' } })
             )
           ) : null,
