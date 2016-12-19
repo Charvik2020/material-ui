@@ -156,6 +156,13 @@ var AppBar = function (_Component) {
       _this.props.getStatus(!_this.props.showTextField);
     };
 
+    _this.toggleNotification = function () {
+      _this.props.showNotificationTab(!_this.state.showNotification);
+      _this.setState({
+        showNotification: !_this.state.showNotification
+      });
+    };
+
     _this.onCancel = function () {
       _this.setState({
         clearText: true
@@ -166,7 +173,7 @@ var AppBar = function (_Component) {
       });
     };
 
-    _this.state = { clearText: false };
+    _this.state = { clearText: false, showNotification: false };
 
     return _this;
   }
@@ -199,8 +206,9 @@ var AppBar = function (_Component) {
       var zDepth = _props.zDepth;
       var children = _props.children;
       var showSearchInput = _props.showSearchInput;
+      var showNotificationBell = _props.showNotificationBell;
       var showSearchIcon = _props.showSearchIcon;
-      var other = (0, _objectWithoutProperties3.default)(_props, ['title', 'titleStyle', 'iconStyleLeft', 'iconStyleRight', 'onTitleTouchTap', 'showMenuIconButton', 'iconElementLeft', 'iconElementRight', 'iconClassNameLeft', 'iconClassNameRight', 'onLeftIconButtonTouchTap', 'onRightIconButtonTouchTap', 'className', 'style', 'zDepth', 'children', 'showSearchInput', 'showSearchIcon']);
+      var other = (0, _objectWithoutProperties3.default)(_props, ['title', 'titleStyle', 'iconStyleLeft', 'iconStyleRight', 'onTitleTouchTap', 'showMenuIconButton', 'iconElementLeft', 'iconElementRight', 'iconClassNameLeft', 'iconClassNameRight', 'onLeftIconButtonTouchTap', 'onRightIconButtonTouchTap', 'className', 'style', 'zDepth', 'children', 'showSearchInput', 'showNotificationBell', 'showSearchIcon']);
       var prepareStyles = this.context.muiTheme.prepareStyles;
 
       var styles = getStyles(this.props, this.context);
@@ -209,6 +217,7 @@ var AppBar = function (_Component) {
       var menuElementRight = void 0;
       var searchInput = void 0;
       var searchIcon = void 0;
+      var notificationIcon = void 0;
 
       // If the title is a string, wrap in an h1 tag.
       // If not, wrap in a div tag.
@@ -325,6 +334,18 @@ var AppBar = function (_Component) {
           )
         );
       }
+      if (showNotificationBell) {
+
+        notificationIcon = _react2.default.createElement(
+          'div',
+          { style: { position: 'relative' } },
+          _react2.default.createElement(
+            'i',
+            { className: 'material-icons', onClick: this.toggleNotification, style: { position: 'absolute', bottom: '20px', color: '#FFF', right: '30px' } },
+            'notifications_none'
+          )
+        );
+      }
       return _react2.default.createElement(
         _Paper2.default,
         (0, _extends3.default)({}, other, {
@@ -337,6 +358,7 @@ var AppBar = function (_Component) {
         titleElement,
         searchInput,
         searchIcon,
+        notificationIcon,
         menuElementRight,
         children
       );
@@ -352,6 +374,7 @@ AppBar.defaultProps = {
   zDepth: 1,
   showSearchInput: false,
   showSearchIcon: false,
+  showNotificationBell: true,
   searchHintStyle: _propTypes2.default.searchHintStyle,
   searchUnderlineStyle: _propTypes2.default.searchUnderlineStyle,
   searchUnderlineFocusStyle: _propTypes2.default.searchUnderlineFocusStyle
@@ -434,6 +457,8 @@ process.env.NODE_ENV !== "production" ? AppBar.propTypes = {
    * The zDepth of the component.
    * The shadow of the app bar is also dependent on this property.
    */
-  zDepth: _propTypes2.default.zDepth
+  zDepth: _propTypes2.default.zDepth,
+
+  showNotificationTab: _react.PropTypes.func
 } : void 0;
 exports.default = AppBar;
