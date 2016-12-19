@@ -374,7 +374,7 @@ AppBar.defaultProps = {
   zDepth: 1,
   showSearchInput: false,
   showSearchIcon: false,
-  showNotificationBell: true,
+  showNotificationBell: false,
   searchHintStyle: _propTypes2.default.searchHintStyle,
   searchUnderlineStyle: _propTypes2.default.searchUnderlineStyle,
   searchUnderlineFocusStyle: _propTypes2.default.searchUnderlineFocusStyle
@@ -457,8 +457,7 @@ process.env.NODE_ENV !== "production" ? AppBar.propTypes = {
    * The zDepth of the component.
    * The shadow of the app bar is also dependent on this property.
    */
-  zDepth: _propTypes2.default.zDepth,
+  zDepth: _propTypes2.default.zDepth
 
-  showNotificationTab: _react.PropTypes.func
 } : void 0;
 exports.default = AppBar;
