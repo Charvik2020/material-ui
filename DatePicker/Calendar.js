@@ -415,14 +415,10 @@ var Calendar = function (_Component) {
                 valueSelected: this.state.selectedCompareValue,
                 defaultSelected: 'previous_day',
                 onChange: this.selectCompareValue },
-              _react2.default.createElement(_RadioButton.RadioButton, {
-                value: 'previous_day',
-                label: 'Previous day',
-                labelStyle: { fontFamily: 'Bariol-Light', fontSize: '18px' } }),
-              _react2.default.createElement(_RadioButton.RadioButton, {
-                value: 'same_day_last_month',
-                label: 'Last day past month',
-                labelStyle: { fontFamily: 'Bariol-Light', fontSize: '18px' } })
+              this.props.compareValues.map(function (item) {
+                return _react2.default.createElement(_RadioButton.RadioButton, { value: item.value, label: item.label,
+                  labelStyle: { fontFamily: 'Bariol', fontSize: '16px' } });
+              })
             )
           ) : null,
           !this.state.displayMonthDay && _react2.default.createElement(
