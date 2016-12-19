@@ -243,7 +243,8 @@ var DatePicker = function (_Component) {
           ref: 'dialogWindow',
           shouldDisableDate: shouldDisableDate,
           selectCompareValue: this.selectCompareValue,
-          hasCompareDate: this.props.hasCompareDate
+          hasCompareDate: this.props.hasCompareDate,
+          compareValues: this.props.compareValues
         })
       );
     }
