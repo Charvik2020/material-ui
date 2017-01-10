@@ -338,7 +338,7 @@ var AppBar = function (_Component) {
 
         notificationIcon = _react2.default.createElement(
           'div',
-          { style: { position: 'relative' } },
+          { style: { position: 'relative', cursor: 'pointer' } },
           _react2.default.createElement(
             'i',
             { className: 'material-icons', onClick: this.toggleNotification, style: { position: 'absolute', bottom: '20px', color: '#FFF', right: '30px' } },
