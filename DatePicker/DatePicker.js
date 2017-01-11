@@ -68,7 +68,7 @@ var DatePicker = function (_Component) {
 
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = DatePicker.__proto__ || (0, _getPrototypeOf2.default)(DatePicker)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       date: undefined,
-      selectedCompareValue: 'previous_day'
+      selectedCompareValue: undefined
     }, _this.handleAccept = function (date) {
       if (!_this.isControlled()) {
         _this.setState({
@@ -76,7 +76,13 @@ var DatePicker = function (_Component) {
         });
       }
       if (_this.props.onChange) {
-        _this.props.onChange(null, date, _this.state.selectedCompareValue);
+        var selectedCompareValue = _this.state.selectedCompareValue;
+        if (!selectedCompareValue) {
+          selectedCompareValue = _this.props.compareValues[0].value;
+        }
+        _this.setState({ selectedCompareValue: selectedCompareValue }, function () {
+          this.props.onChange(null, date, this.state.selectedCompareValue);
+        });
       }
     }, _this.handleFocus = function (event) {
       event.target.blur();
