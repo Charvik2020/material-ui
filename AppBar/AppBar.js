@@ -335,15 +335,19 @@ var AppBar = function (_Component) {
         );
       }
       if (showNotificationBell) {
-
         notificationIcon = _react2.default.createElement(
           'div',
-          { style: { position: 'relative', cursor: 'pointer' } },
+          { style: { position: 'relative', cursor: 'pointer' }, onClick: this.toggleNotification },
           _react2.default.createElement(
             'i',
-            { className: 'material-icons', onClick: this.toggleNotification, style: { position: 'absolute', bottom: '20px', color: '#FFF', right: '30px' } },
+            { className: 'material-icons', style: { position: 'absolute', bottom: '18px', color: '#FFF', right: '53px', fontSize: '28px' } },
             'notifications_none'
-          )
+          ),
+          this.props.notificationCount ? _react2.default.createElement(
+            'span',
+            { style: { position: 'absolute', right: '45px', top: '11px', background: '#FFF', width: '24px', height: '24px', fontWeight: 'bold', borderRadius: '50%', zIndex: '20', textAlign: 'center', justifyContent: 'center', alignContent: 'center', display: 'flex', flexFlow: 'row wrap', alignItems: 'center', fontSize: '12px' } },
+            this.props.notificationCount
+          ) : null
         );
       }
       return _react2.default.createElement(
@@ -371,6 +375,7 @@ AppBar.muiName = 'AppBar';
 AppBar.defaultProps = {
   showMenuIconButton: true,
   title: '',
+  notificationCount: 0,
   zDepth: 1,
   showSearchInput: false,
   showSearchIcon: false,
