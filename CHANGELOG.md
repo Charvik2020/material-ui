@@ -742,6 +742,7 @@ This is a small release improving the stability of `v0.16.x`.
 - [docs] Fix non-compiling example code on Themes page (#5344)
 
 
+
 ## 0.16.0
 ###### _Oct 3, 2016_
 
@@ -790,6 +791,7 @@ For more details, you can have a look a the [next milestone](https://github.com/
 - [IconButton] Remove dead code (#5226)
 - [Popover] Fix a callback leak (#5158)
 - [TextField] Removed deprecated onEnterKeyDown prop
+
 - [RaisedButton] Add a buttonStyle property (#5196)
 - [Switch] Add thumbSwitchedStyle and trackSwitchedStyle (#5106)
 - [Snackbar] Fix the element covering up 100% width of the screen (#5113)
@@ -873,7 +875,6 @@ Examples:
 
 - [Slider] Clean up the implementation (#5036)
 - [test] Reduce the noise when running the test suite (ea2538e)
-
 
 ## 0.15.4
 ###### _Aug 11, 2016_

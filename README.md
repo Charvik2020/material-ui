@@ -7,6 +7,7 @@ that you can use to tag your questions.
 
 # [Material-UI](http://www.material-ui.com/)
 
+
 [![npm package](https://img.shields.io/npm/v/material-ui.svg?style=flat-square)](https://www.npmjs.org/package/material-ui)
 [![Build Status](https://travis-ci.org/callemall/material-ui.svg?branch=master)](https://travis-ci.org/callemall/material-ui)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg?style=flat-square)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -81,6 +82,7 @@ on how to do so.
 
 Beginning with v0.15.0, Material-UI components require a theme to be provided. The quickest way to get up and running is by using the `MuiThemeProvider` to inject the theme into your application context. Following that, you can use any of the components as demonstrated in the documentation.
 
+
 Here is a quick example to get you started:
 
 **./App.js**
@@ -124,6 +126,7 @@ achieved in the following two ways:
 
 * [Use a custom theme to style components](http://material-ui.com/#/customization/themes)
 * [Override individual component styles via the `style` prop](http://www.material-ui.com/#/customization/styles)
+
 
 ## Examples
 
