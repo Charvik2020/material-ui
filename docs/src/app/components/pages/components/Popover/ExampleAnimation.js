@@ -1,6 +1,6 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import {Popover, PopoverAnimationVertical} from 'material-ui/Popover';
+import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -14,9 +14,10 @@ export default class PopoverExampleAnimation extends React.Component {
     };
   }
 
-  handleTouchTap = (event) => {
+  handleClick = (event) => {
     // This prevents ghost click.
     event.preventDefault();
+
     this.setState({
       open: true,
       anchorEl: event.currentTarget,
@@ -33,7 +34,7 @@ export default class PopoverExampleAnimation extends React.Component {
     return (
       <div>
         <RaisedButton
-          onTouchTap={this.handleTouchTap}
+          onClick={this.handleClick}
           label="Click me"
         />
         <Popover
